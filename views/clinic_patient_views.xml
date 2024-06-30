@@ -12,6 +12,9 @@
             <sheet>
                 <notebook>
                     <page name="Patient">
+                       <group>
+                       <field name="name"/>
+                       </group>
                         <group>
                        <field name="patient_id"/>
                        </group>
@@ -22,9 +25,8 @@
                        <field name="emergency_contact"/>
                        </group>
                        <group>
-                       <field name="insurance_info"/>
+                       <field name="contact_address"/>
                        </group>
-                       
                     </page>
                 </notebook>
             </sheet>

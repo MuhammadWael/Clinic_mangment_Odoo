@@ -10,8 +10,8 @@ class ClinicPatient(models.Model):
     
     @api.model
     def create(self,vals):
-        vals['pateient_id'] = self.env['ir.sqeuence'].next_by_code('clinic_patient')
-        return super(ClinicPatient, vals)
+        vals['patient_id'] = self.env['ir.sequence'].next_by_code('clinic.patient')
+        return super().create(vals)
 
     
 
