@@ -12,6 +12,7 @@ class ClinicPatient(models.Model):
     def create(self,vals):
         vals['patient_id'] = self.env['ir.sequence'].next_by_code('clinic.patient')
         return super().create(vals)
+    
 
     
 
