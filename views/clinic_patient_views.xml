@@ -1,0 +1,40 @@
+<odoo>
+    <record id="clinic_patient_action" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field> 
+    </record>
+    <record id="clinic_patient_form" model="ir.ui.view">
+    <field name="name">Patient</field>
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+        <form string="Patient_form">
+            <sheet>
+                <notebook>
+                    <page name="Patient">
+                        <group>
+                       <field name="patient_id"/>
+                       </group>
+                       <group>
+                       <field name="birth_date"/>
+                       </group>
+                       <group>
+                       <field name="emergency_contact"/>
+                       </group>
+                       <group>
+                       <field name="insurance_info"/>
+                       </group>
+                       
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+    </record>
+    <record id="view_my_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="clinic_patient_form"/>
+        <field name="act_window_id" ref="clinic_patient_action"/>
+    </record>
+</odoo>

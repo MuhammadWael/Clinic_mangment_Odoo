@@ -1,0 +1,7 @@
+<odoo>
+<menuitem id="clinic" name="Clinic"><!--root menu-->
+    <menuitem id="clinic_patient_menu" name="Clinic Patient" action="clinic_patient_action">
+        <!-- <menuitem id="clinic_patient_menu_action" name=""/> -->
+    </menuitem>
+</menuitem>
+</odoo>

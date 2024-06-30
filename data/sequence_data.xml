@@ -1,0 +1,8 @@
+<odoo>
+    <record id="clinic_patient_sequence" model="ir.sequence">
+        <field name="name">Clinic Patient</field>
+        <field name="code">clinic.patient</field>
+         <field name="prefix">CP</field> <!--CP:clinc patient -->
+        <field name="padding">4</field>
+    </record>
+</odoo>
