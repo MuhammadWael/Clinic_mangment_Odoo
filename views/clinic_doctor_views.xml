@@ -1,0 +1,54 @@
+<odoo>
+    <record id="clinic_doctor_action" model="ir.actions.act_window">
+        <field name="name">Doctor</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field> 
+    </record>
+
+    <record id="clinic_doctor_form" model="ir.ui.view">
+        <field name="name">Doctor</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <form string="doctor_form">
+                <sheet>
+                    <notebook>
+                        <page name="doctor">
+                        <group>
+                            <group>
+                                <field name = "specialty"/>
+                            </group>
+                            <group>
+                                <field name = "availability"/>
+                            </group>
+                        </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="clinic_doctor_tree" model="ir.ui.view">
+        <field name="name">Doctor</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree string="doctor_tree">
+                <field name = "specialty"/>
+                <field name = "availability"/>   
+            </tree>
+        </field>
+    </record> 
+
+    <record id="view_my_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="clinic_doctor_tree"/>
+        <field name="act_window_id" ref="clinic_doctor_action"/>
+    </record>
+    <record id="view_my_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="clinic_doctor_form"/>
+        <field name="act_window_id" ref="clinic_doctor_action"/>
+    </record> 
+</odoo>

@@ -48,7 +48,7 @@
     <field name="name">Patient</field>
     <field name="model">res.partner</field>
     <field name="arch" type="xml">
-        <tree string="Patient_form">
+        <tree string="Patient_tree">
                     <field name="name"/>
                     <field name="patient_id"/>
                     <field name="birth_date"/>
