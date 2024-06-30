@@ -6,25 +6,20 @@
     </record>
 
     <record id="clinic_doctor_form" model="ir.ui.view">
-        <field name="name">Doctor</field>
+        <field name="name">doctor.form</field>
         <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
         <field name="arch" type="xml">
-            <form string="doctor_form">
-                <sheet>
-                    <notebook>
-                        <page name="doctor">
+                <xpath expr="//sheet/group[@name='phone_numbers']" position="after">
+                    <group>
                         <group>
-                            <group>
-                                <field name = "specialty"/>
-                            </group>
-                            <group>
-                                <field name = "availability"/>
-                            </group>
+                            <field name = "specialty"/>
                         </group>
-                        </page>
-                    </notebook>
-                </sheet>
-            </form>
+                        <group>
+                            <field name = "availability"/>
+                        </group>
+                    </group>   
+                </xpath>
         </field>
     </record>
 
@@ -45,10 +40,10 @@
         <field name="view_id" ref="clinic_doctor_tree"/>
         <field name="act_window_id" ref="clinic_doctor_action"/>
     </record>
-    <record id="view_my_form" model="ir.actions.act_window.view">
+    <!-- <record id="view_my_form" model="ir.actions.act_window.view">
         <field name="sequence" eval="20"/>
         <field name="view_mode">form</field>
         <field name="view_id" ref="clinic_doctor_form"/>
         <field name="act_window_id" ref="clinic_doctor_action"/>
-    </record> 
+    </record>  -->
 </odoo>
