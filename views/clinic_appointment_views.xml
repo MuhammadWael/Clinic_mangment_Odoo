@@ -2,21 +2,31 @@
     <record id="clinic_appointment_action" model="ir.actions.act_window">
         <field name="name">Appointment</field>
         <field name="res_model">clinic.appointment</field>
-        <field name="view_mode">kanban,form</field> 
+        <field name="view_mode">kanban,form,calendar</field> 
     </record>
 
-    <!-- <record id="clinic_appointment_tree" model="ir.ui.view">
+    <record id="clinic_appointment_form" model="ir.ui.view">
         <field name="name">Appointment</field>
         <field name="model">clinic.appointment</field>
         <field name="arch" type="xml">
-            <tree string="appointment_tree">
-                <field name="appointment"/>
-                <field name = "appointment_type"/>
-                <field name = "status"/>   
-                <field name = "notes"/>   
-            </tree>
+            <form string="appointment_form">
+                <group> 
+                    <group>
+                        <field name="appointment"/>
+                    </group>
+                    <group>
+                        <field name = "appointment_type"/>
+                    </group>
+                    <group>
+                        <field name = "status"/>   
+                    </group>
+                    <group>
+                        <field name = "notes"/> 
+                    </group>  
+                </group>
+            </form>
         </field>
-    </record>    -->
+    </record> 
 
 <record id="clinic_appointment_kanban" model="ir.ui.view">
     <field name="name">Appointment</field>
@@ -53,4 +63,16 @@
     </field>
 </record>
 
+    <record id="clinic_appointment_calendar" model="ir.ui.view">
+        <field name="name">Appointment Calendar</field>
+        <field name="model">clinic.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointments"
+                      date_start="appointment">
+                <field name="appointment_type"/>
+                <field name="status"/>
+                <field name="notes"/>
+            </calendar>
+        </field>
+    </record>
 </odoo>
