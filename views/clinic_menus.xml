@@ -1,7 +1,7 @@
 <odoo>
-<menuitem id="clinic" name="Clinic"><!--root menu-->
-    <menuitem id="clinic_patient_menu" name="Clinic Patient" action="clinic_patient_action"/>
-        <!-- <menuitem id="clinic_patient_menu_action" name=""/> -->
-    <menuitem id="clinic_doctor_menu" name="Clinic Doctor" action="clinic_doctor_action"/>
-</menuitem>
+    <menuitem id="clinic" name="Clinic"><!--root menu-->
+        <menuitem id="clinic_patient_menu" name="Clinic Patient" action="clinic_patient_action"/>
+        <menuitem id="clinic_doctor_menu" name="Clinic Doctor" action="clinic_doctor_action"/>
+        <menuitem id="clinic_appointment_menu" name="Clinic Appointment" action="clinic_appointment_action"/>
+    </menuitem>
 </odoo>

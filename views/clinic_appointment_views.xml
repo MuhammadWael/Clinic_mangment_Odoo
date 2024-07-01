@@ -1,0 +1,56 @@
+<odoo>
+    <record id="clinic_appointment_action" model="ir.actions.act_window">
+        <field name="name">Appointment</field>
+        <field name="res_model">clinic.appointment</field>
+        <field name="view_mode">kanban,form</field> 
+    </record>
+
+    <!-- <record id="clinic_appointment_tree" model="ir.ui.view">
+        <field name="name">Appointment</field>
+        <field name="model">clinic.appointment</field>
+        <field name="arch" type="xml">
+            <tree string="appointment_tree">
+                <field name="appointment"/>
+                <field name = "appointment_type"/>
+                <field name = "status"/>   
+                <field name = "notes"/>   
+            </tree>
+        </field>
+    </record>    -->
+
+<record id="clinic_appointment_kanban" model="ir.ui.view">
+    <field name="name">Appointment</field>
+    <field name="model">clinic.appointment</field>
+    <field name="arch" type="xml">
+        <kanban>
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div>
+                        <h1>
+                            <field name="doctor_id"/>
+                        </h1>
+                        </div>
+                        <div>
+                            <h2><field name="patient_id"/></h2>
+                        </div>
+                        <div>
+                            <field name="appointment"/>
+                        </div>
+                        <div>
+                            <field name = "appointment_type"/>
+                        </div>
+                        <div>
+                            <field name = "status"/>   
+                        </div>
+                        <div>
+                            <field name = "notes"/>
+                        </div>   
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+</odoo>
