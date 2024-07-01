@@ -1,0 +1,45 @@
+<odoo>
+    <record id="clinic_medical_record_action" model="ir.actions.act_window">
+        <field name="name">Medical Record</field>
+        <field name="res_model">clinic.medical_record</field>
+        <field name="view_mode">tree,form</field> 
+    </record>
+    <record id="clinic_medical_record_form" model="ir.ui.view">
+    <field name="name">Medical Record</field>
+    <field name="model">clinic.medical_record</field>
+    <field name="arch" type="xml">
+        <form string="medical_record_form">
+            <sheet name="medical_record">
+                <group>
+                <field name="patient_id"/>
+                </group>
+                <group>
+                <field name = "treatment_id"/>
+                </group>
+                <group>
+                <field name = "notes"/>
+                </group>
+                <group>
+                <field name = "upload_file"/> 
+                </group>
+                <group>
+                <field name = "upload_file_name"/>  
+                </group>
+            </sheet>
+        </form>
+    </field>
+    </record>
+    <record id="clinic_medical_record_tree" model="ir.ui.view">
+        <field name="name">Medical Record</field>
+        <field name="model">clinic.medical_record</field>
+        <field name="arch" type="xml">
+            <tree string="medical_record_tree">
+                <field name="patient_id"/>
+                <field name = "treatment_id"/>
+                <field name = "notes"/>
+                <field name = "upload_file_name"/>
+                <field name = "upload_file"/>
+            </tree>
+        </field>
+    </record> 
+</odoo>

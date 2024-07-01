@@ -9,26 +9,22 @@
     <field name="model">clinic.treatment</field>
     <field name="arch" type="xml">
         <form string="treatment_form">
-            <sheet>
-                <notebook>
-                    <page name="treatment">
-                        <group>
-                       <field name="patient_id"/>
-                       </group>
-                       <group>
-                       <field name = "doctor_id"/>
-                       </group>
-                       <group>
-                       <field name = "appointment_id"/>
-                       </group>
-                       <group>
-                       <field name = "details"/>   
-                       </group>
-                       <group>
-                       <field name = "notes"/>
-                       </group>
-                    </page>   
-                </notebook>
+            <sheet name="treatment">
+                <group>
+                <field name="patient_id"/>
+                </group>
+                <group>
+                <field name = "doctor_id"/>
+                </group>
+                <group>
+                <field name = "appointment_id"/>
+                </group>
+                <group>
+                <field name = "details"/>   
+                </group>
+                <group>
+                <field name = "notes"/>
+                </group>
             </sheet>
         </form>
     </field>

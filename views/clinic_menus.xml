@@ -4,5 +4,6 @@
         <menuitem id="clinic_doctor_menu" name="Clinic Doctor" action="clinic_doctor_action"/>
         <menuitem id="clinic_appointment_menu" name="Clinic Appointment" action="clinic_appointment_action"/>
         <menuitem id="clinic_treatment_menu" name="Clinic Treatment" action="clinic_treatment_action"/>
+        <menuitem id="clinic_medical_record_menu" name="Clinic Medical Record" action="clinic_medical_record_action"/>
     </menuitem>
 </odoo>

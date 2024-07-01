@@ -15,6 +15,7 @@
         "views/clinic_appointment_views.xml",
         "views/clinic_doctor_views.xml",
         "views/clinic_treatments_views.xml",
+        "views/clinic_medical_record_views.xml",
         "views/clinic_menus.xml"       
     ],
 }

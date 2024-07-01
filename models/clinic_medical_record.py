@@ -11,9 +11,9 @@ class ClinicMedicalRecord(models.Model):
     upload_file = fields.Binary(string="Upload File", attachment=True)
     upload_file_name = fields.Char(string="File Name", compute="_compute_upload_file_name", store=True)
 
-    def _compute_upload_file_name(self):
-        for record in self:
-            if record.upload_file:
-                record.upload_file_name = record.upload_file_filename or 'Uploaded File'
-            else:
-                record.upload_file_name = False
+    # def _compute_upload_file_name(self):
+    #     for record in self:
+    #         if record.upload_file:
+    #             record.upload_file_name = record.upload_file_filename or 'Uploaded File'
+    #         else:
+    #             record.upload_file_name = False
