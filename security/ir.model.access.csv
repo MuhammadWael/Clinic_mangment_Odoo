@@ -4,4 +4,5 @@ clinic.access_clinic_treatment,access_clinic_treatment,clinic.model_clinic_treat
 clinic.access_clinic_medical_record,access_clinic_medical_record,clinic.model_clinic_medical_record,base.group_user,1,1,1,0
 clinic.access_clinic_prescription,access_clinic_prescription,clinic.model_clinic_prescription,base.group_user,1,1,1,0
 clinic.access_clinic_medication_detail,access_clinic_medication_detail,clinic.model_clinic_medication_detail,base.group_user,1,1,1,0
+clinic.access_clinic_treatment_details,access_clinic_treatment_details,clinic.model_clinic_treatment_details,base.group_user,1,1,1,0
 clinic.access_clinic_log,access_clinic_log,clinic.model_clinic_log,base.group_user,1,1,1,0

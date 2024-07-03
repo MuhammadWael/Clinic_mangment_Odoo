@@ -20,7 +20,13 @@
                 <field name = "appointment_id"/>
                 </group>
                 <group>
-                <field name = "details"/>   
+                <field name = "treatment_details">
+                    <tree>
+                        <field name="diagnoses"/>                        
+                        <field name="prescriped_medication"/>
+                        <field name="proceduers"/>
+                    </tree>
+                </field>   
                 </group>
                 <group>
                 <field name = "notes"/>
@@ -37,7 +43,7 @@
                 <field name="patient_id"/>
                 <field name = "doctor_id"/>
                 <field name = "appointment_id"/>
-                <field name = "details"/>   
+                <field name = "treatment_details"/>   
                 <field name = "notes"/>   
             </tree>
         </field>

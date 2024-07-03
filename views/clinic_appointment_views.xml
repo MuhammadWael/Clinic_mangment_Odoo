@@ -9,11 +9,17 @@
         <field name="name">Appointment</field>
         <field name="model">clinic.appointment</field>
         <field name="arch" type="xml">
-            <form string="appointment_form">
+            <form string="A">
+                <h1>
+                    <field name="appointment_id"/>
+                </h1>
                 <header>
                     <!-- <field name="pay_action"/> -->
                 </header>
                 <group> 
+                    <group>
+                        <field name="appointment_id"/>
+                    </group>
                     <group>
                         <field name="patient_id"/>
                     </group>
@@ -46,12 +52,15 @@
                 <t t-name="kanban-box">
                     <div class="oe_kanban_global_click">
                         <div>
-                        <h1>
+                        <div>
+                            <h1><field name="appointment_id"/></h1>
+                        </div>
+                        <h2>
                             <field name="doctor_id"/>
-                        </h1>
+                        </h2>
                         </div>
                         <div>
-                            <h2><field name="patient_id"/></h2>
+                            <h3><field name="patient_id"/></h3>
                         </div>
                         <div>
                             <field name="appointment"/>
@@ -76,12 +85,13 @@
         <field name="name">Appointment Calendar</field>
         <field name="model">clinic.appointment</field>
         <field name="arch" type="xml">
-            <calendar string="Appointments"
-                      date_start="appointment">
+            <calendar string="Appointments" date_start="appointment">
                 <field name="appointment_type"/>
+                <field name="appointment_id"/>
                 <field name="status"/>
                 <field name="notes"/>
             </calendar>
         </field>
     </record>
+
 </odoo>

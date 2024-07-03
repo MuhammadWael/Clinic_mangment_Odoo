@@ -4,7 +4,8 @@ from odoo.exceptions import ValidationError,UserError
 class ClinicAppointment(models.Model):
     _name = "clinic.appointment"
 
-    appointment_id = fields.Char(string='Appointment ID', readonly=True, copy=False, index=True)
+#    name = fields.Char(string="Name", compute="_compute_name", store=True)
+    appointment_id = fields.Char(string='Appointment ID', readonly=True, copy=False)
     patient_id = fields.Many2one("res.partner",string="Patient",required=True)
     doctor_id = fields.Many2one("res.users",string="Doctor",required=True)
     log_id = fields.One2many("clinic.log","appointment_id")
@@ -24,9 +25,17 @@ class ClinicAppointment(models.Model):
     notes = fields.Text(string="Add notes")
     
     @api.model
-    def create(self,vals):
-        vals['appointment_id'] = self.env['ir.sequence'].next_by_code('clinic.appointment')
-        return super().create(vals)
+    def create(self, vals):  
+
+        if vals.get('appointment_id'):
+            vals['appointment_id'] = self.env['ir.sequence'].next_by_code('clinic.appointment.sequence')
+        
+        return super(ClinicAppointment, self).create(vals)
+    
+    # @api.depends('appointment_id')
+    # def _compute_name(self):
+    #     for record in self:
+    #         record.name = record.appointment_id
     
     @api.constrains
     def _check_conflict(self):
