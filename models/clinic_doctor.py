@@ -4,7 +4,7 @@ class ClinicDoctor(models.Model):
     _inherit = "res.users"
 
     appointment_id = fields.One2many("clinic.appointment","doctor_id",string="Appointments")
-    specialty = fields.Text(string="Specialty")
+    specialty = fields.Text(string="Specialty", required=True)
     availability = fields.Selection(
         compute="_compute_avalability",
         selection=[

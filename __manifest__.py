@@ -2,7 +2,7 @@
 {
     'name': "clinic",
     'version': '1.0',
-    'depends': ['base'],
+    'depends': ['base','account'],
     'author': "Muhammad wael",
     'description': """
     Description text
@@ -16,6 +16,8 @@
         "views/clinic_doctor_views.xml",
         "views/clinic_treatments_views.xml",
         "views/clinic_medical_record_views.xml",
+        "views/clinic_prescription_views.xml",
+        "views/clinic_log_views.xml",
         "views/clinic_menus.xml"       
     ],
 }

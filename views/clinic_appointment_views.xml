@@ -10,7 +10,16 @@
         <field name="model">clinic.appointment</field>
         <field name="arch" type="xml">
             <form string="appointment_form">
+                <header>
+                    <!-- <field name="pay_action"/> -->
+                </header>
                 <group> 
+                    <group>
+                        <field name="patient_id"/>
+                    </group>
+                    <group>
+                        <field name="doctor_id"/>
+                    </group>
                     <group>
                         <field name="appointment"/>
                     </group>
@@ -32,7 +41,7 @@
     <field name="name">Appointment</field>
     <field name="model">clinic.appointment</field>
     <field name="arch" type="xml">
-        <kanban>
+        <kanban default_group_by="status">
             <templates>
                 <t t-name="kanban-box">
                     <div class="oe_kanban_global_click">

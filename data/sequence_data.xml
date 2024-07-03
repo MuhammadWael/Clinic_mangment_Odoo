@@ -6,4 +6,11 @@
         <field name="padding">4</field>
         <field name="company_id" eval="False"/>
     </record>
+    <record id="clinic_appointment_sequence" model="ir.sequence">
+        <field name="name">Clinic Appointment</field>
+        <field name="code">clinic.appointment</field>
+         <field name="prefix">CA</field> <!--CP:clinc Appointment -->
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
 </odoo>

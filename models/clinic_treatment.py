@@ -7,7 +7,9 @@ class ClinicTreatment(models.Model):
     patient_id = fields.Many2one("res.partner",string="Patient")
     doctor_id = fields.Many2one("res.users",string="Doctor")
     appointment_id = fields.Many2one("clinic.appointment",string="Appointment")
-    details = fields.Selection([
+    prescription_id = fields.One2many("clinic.prescription","treatment_id")
+    details = fields.Selection(required=True,
+                               selection=[
         ('diagnosis','Diagnosis'),
         ('prescribed_medications','Prescribed Medications'),
         ('procedures','Procedures')
