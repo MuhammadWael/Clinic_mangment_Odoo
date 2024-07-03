@@ -5,6 +5,7 @@ class ClinicAppointment(models.Model):
     _name = "clinic.appointment"
 
     appointment_id = fields.Char(string='Appointment ID', readonly=True, copy=False, index=True)
+    name = fields.Char(string='Name', compute='_compute_name', store=True)
     patient_id = fields.Many2one("res.partner",string="Patient",required=True)
     doctor_id = fields.Many2one("res.users",string="Doctor",required=True)
     log_id = fields.One2many("clinic.log","appointment_id")
@@ -23,7 +24,8 @@ class ClinicAppointment(models.Model):
         ('confirmed', 'Confirmed')
     ])
     notes = fields.Text(string="Add notes")
-    
+    total_price = fields.Integer(string="Price")
+
     @api.model
     def create(self, vals):
         if not vals.get('appointment_id'):
@@ -40,6 +42,12 @@ class ClinicAppointment(models.Model):
         })
         
         return appointment
+    
+    @api.depends('appointment_id')    
+    def _compute_name(self):
+        for record in self:
+            if record.appointment_id:
+                record.name = f"Appointment {record.appointment_id}"
     
     @api.constrains
     def _check_conflict(self):
@@ -59,26 +67,6 @@ class ClinicAppointment(models.Model):
             if record.status != 'confirmed':
                 record.status = 'confirmed'
         
-        self.env["account.move"].create({
-            "partner_id": self.patient_id.id,
-            "move_type": "out_invoice",
-            "invoice_line_ids": [
-                Command.create({
-                    "name": self.name,
-                    "quantity": "1",
-                    "price_unit": self.price
-                })
-            ],
-        })
-        return super().pay_action()
+            self.env['account.move'].create_clinic_invoice(record.patient_id.id, record.id, record.treatment_id.id)
+        return True
 
-    # @api.model
-    # def create(self, vals):    
-    #     self.log_id.create({
-    #         'patient_id': self.patient_id.id,
-    #         'appointment_id': self.id,
-    #         'create_uid': self.create_uid,
-    #         'entry_datetime': self.appointment,
-    #         'notes': self.notes
-    #     })
-    #     return super().create(vals)    

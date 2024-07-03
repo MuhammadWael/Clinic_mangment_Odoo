@@ -10,9 +10,12 @@
     <field name="arch" type="xml">
         <form string="treatment_form">
             <sheet name="treatment">
-                <group>
-                <field name="treatment_id" readonly="True"/>
-                </group>
+                <header>
+                    <h1>
+                        <field name="treatment_id"/>
+                    </h1>
+                    <button name="pay_action" type="object" string="Pay"/> 
+                </header>
                 <group>
                 <field name="patient_id"/>
                 </group>
@@ -37,6 +40,9 @@
                 <group>
                 <field name = "notes"/>
                 </group>
+                <group>
+                <field name = "total_price"/>
+                </group>
             </sheet>
         </form>
     </field>
@@ -53,6 +59,7 @@
                 <field name = "prescription_id"/>
                 <field name = "treatment_details"/>   
                 <field name = "notes"/>   
+                <field name = "total_price"/>   
             </tree>
         </field>
     </record> 

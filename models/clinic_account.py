@@ -6,17 +6,24 @@ class ClinicAccount(models.Model):
     patient_id = fields.Many2one("res.partner",string="Patient",required=True)
     appointment_id = fields.Many2one("clinic.appointment",string="Appointment")
     treatment_id = fields.Many2one("clinic.treatment",string="Treatment")
-    price = fields.Integer(string="price")    
+        
     
     @api.model
     def create_clinic_invoice(self, patient_id, appointment_id, treatment_id):
-        treatment = self.env['clinic.treatment'].browse(treatment_id)
-        invoice_line = {
-            'name': treatment.name,
-            'quantity': 1,
-            'price_unit': treatment.price,
-            'account_id': self.env['account.account'].search([('user_type_id', '=', self.env.ref('account.data_account_type_revenue').id)], limit=1).id,
-        }
+        if treatment_id:
+            treatment = self.env['clinic.treatment'].browse(treatment_id)
+            invoice_line = {
+                'name': treatment.name,
+                'quantity': 1,
+                'price_unit': treatment.total_price,
+            }
+        if appointment_id:
+            appointment = self.env['clinic.appointment'].browse(appointment_id)
+            invoice_line = {
+                'name': appointment.name,
+                'quantity': 1,
+                'price_unit': appointment.total_price,
+            }
         invoice = self.create({
             'move_type': 'out_invoice',
             'partner_id': patient_id,
