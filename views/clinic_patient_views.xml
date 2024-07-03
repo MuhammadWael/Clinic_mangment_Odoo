@@ -1,5 +1,5 @@
 <odoo>
-    <record id="clinic_patient_form_view" model="ir.ui.view">
+    <record id="clinic_patient_form" model="ir.ui.view">
         <field name="name">clinic.patient.form.view</field>
         <field name="model">res.partner</field>
         <field name="arch" type="xml">
@@ -19,24 +19,19 @@
                         </group>
                         <group>
                             <field name="birth_date"/>
-                        </group>
-                        <group>
                             <field name="age" readonly="True"/>
                         </group>
                         <group>
                             <field name="emergency_contact"/>
                         </group>
                         <group>
-                                <div class="o_address_format">
-                                    <field name="street"/>
-                                    <field name="street2"/>
-                                    <field name="city" />
-                                    <field name="state_id"/>
-                                    <field name="zip" />
-                                    <div name="partner_address_country">
-                                        <field name="country_id"/>
-                                    </div>
-                                </div>
+                            <h3>Address</h3>
+                            <field name="street" string="Street"/>
+                            <field name="street2" string="Street2"/>
+                            <field name="city" string="City" />
+                            <field name="state_id" string="State id"/>
+                            <field name="zip" string="zip" />
+                            <field name="country_id" string="Country"/>
                         </group>
                     </group>
                 </sheet>
@@ -61,13 +56,13 @@
     </record> 
 
 
-    <record id="clinic_patient_action_" model="ir.actions.act_window">
+    <record id="clinic_patient_action" model="ir.actions.act_window">
         <field name="name">Patient</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field> 
     </record>
     
-    <record id="view_my_form" model="ir.actions.act_window.view">
+    <record id="view_form" model="ir.actions.act_window.view">
         <field name="view_mode">form</field>
         <field name="view_id" ref="clinic_patient_form"/>
         <field name="act_window_id" ref="clinic_patient_action"/>
