@@ -3,7 +3,6 @@ from odoo import models,fields,api
 class ClinicDoctor(models.Model):
     _inherit = "res.users"
 
-    appointment_id = fields.One2many("clinic.appointment","doctor_id",string="Appointments")
     specialty = fields.Text(string="Specialty", required=True)
     availability = fields.Selection(
         compute="_compute_avalability",
@@ -11,6 +10,7 @@ class ClinicDoctor(models.Model):
             ('available','Available'),
             ('unavailable','Unavailable')
         ]) 
+    appointment_id = fields.One2many("clinic.appointment","doctor_id",string="Appointments")
     upcoming_appointments = fields.One2many(
     comodel_name="clinic.appointment",
     compute="_compute_upcoming_appointments",

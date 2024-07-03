@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError,UserError
 class ClinicAppointment(models.Model):
     _name = "clinic.appointment"
 
-    appointment_id = fields.Char(string='Appointment ID', readonly=True, copy=False)
+    appointment_id = fields.Char(string='Appointment ID', readonly=True, copy=False, index=True)
     patient_id = fields.Many2one("res.partner",string="Patient",required=True)
     doctor_id = fields.Many2one("res.users",string="Doctor",required=True)
     log_id = fields.One2many("clinic.log","appointment_id")
