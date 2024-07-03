@@ -8,7 +8,8 @@ class ClinicAppointment(models.Model):
     patient_id = fields.Many2one("res.partner",string="Patient",required=True)
     doctor_id = fields.Many2one("res.users",string="Doctor",required=True)
     log_id = fields.One2many("clinic.log","appointment_id")
-    appointment = fields.Datetime(string="Appointment",required=True)
+    treatment_id = fields.One2many("clinic.treatment","appointment_id")
+    appointment = fields.Datetime(string="Appointment Time",required=True)
     appointment_type = fields.Selection(
         required=True,
         selection=[

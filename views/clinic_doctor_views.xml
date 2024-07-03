@@ -46,6 +46,7 @@
                             <field name="appointment_id"/>
                             <field name="patient_id"/>
                             <field name="appointment"/>
+                            <field name="treatment_id"/>
                             <field name="status"/>
                         </tree>
                     </field>

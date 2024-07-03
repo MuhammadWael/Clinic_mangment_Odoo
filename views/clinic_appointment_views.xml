@@ -27,6 +27,9 @@
                         <field name="doctor_id"/>
                     </group>
                     <group>
+                        <field name="treatment_id"/>
+                    </group>
+                    <group>
                         <field name="appointment"/>
                     </group>
                     <group>
