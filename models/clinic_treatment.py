@@ -4,6 +4,7 @@ from odoo.exceptions import ValidationError,UserError
 class ClinicTreatment(models.Model):
     _name = "clinic.treatment"
 
+    treatment_id = fields.Char(string='Treatment ID', readonly=True, copy=False, index=True)
     patient_id = fields.Many2one("res.partner",string="Patient")
     doctor_id = fields.Many2one("res.users",string="Doctor")
     appointment_id = fields.Many2one("clinic.appointment",string="Appointment")
@@ -11,6 +12,11 @@ class ClinicTreatment(models.Model):
     treatment_details = fields.One2many('clinic.treatment.details', 'treatment_id', string='Treatment Details')
     notes = fields.Text(string="Add notes")
 
+    @api.model
+    def create(self,vals):
+        vals['treatment_id'] = self.env['ir.sequence'].next_by_code('clinic.treatment')
+        return super().create(vals)
+    
     @api.onchange('appointment_id')
     def _onchange_appointment(self):
         for record in self:

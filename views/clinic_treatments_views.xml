@@ -11,6 +11,9 @@
         <form string="treatment_form">
             <sheet name="treatment">
                 <group>
+                <field name="treatment_id" readonly="True"/>
+                </group>
+                <group>
                 <field name="patient_id"/>
                 </group>
                 <group>
@@ -40,6 +43,7 @@
         <field name="model">clinic.treatment</field>
         <field name="arch" type="xml">
             <tree string="treatment_tree">
+                <field name="treatment_id"/>
                 <field name="patient_id"/>
                 <field name = "doctor_id"/>
                 <field name = "appointment_id"/>
