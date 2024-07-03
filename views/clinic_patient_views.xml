@@ -12,6 +12,9 @@
                         <group> 
                             <field name="patient_id"/>
                         </group>
+                        <group> 
+                            <field name="medical_records"/>
+                        </group>
                         <group>
                             <field name="birth_date"/>
                         </group>
@@ -47,6 +50,7 @@
                 <field name = "patient_id"/>
                 <field name = "name"/>
                 <field name = "birth_date"/> 
+                <field name="medical_records"/>
                 <field name = "emergency_contact"/> 
                 <field name = "insurance_info"/> 
                 <field name = "age"/> 

@@ -11,19 +11,19 @@
         <form string="medical_record_form">
             <sheet name="medical_record">
                 <group>
-                <field name="patient_id"/>
+                    <field name="patient_id"/>
                 </group>
                 <group>
-                <field name = "treatment_id"/>
+                    <field name = "treatment_id"/>
                 </group>
                 <group>
-                <field name = "notes"/>
+                    <field name = "notes"/>
                 </group>
                 <group>
-                <field name = "upload_file"/> 
+                    <field name = "upload_file"/> 
                 </group>
                 <group>
-                <field name = "upload_file_name"/>  
+                    <field name = "upload_file_name"/>  
                 </group>
             </sheet>
         </form>

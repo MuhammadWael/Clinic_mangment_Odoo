@@ -1,6 +1,6 @@
 <odoo>
     <record id="clinic_prescription_action" model="ir.actions.act_window">
-        <field name="name">Treatment</field>
+        <field name="name">Prescription</field>
         <field name="res_model">clinic.prescription</field>
         <field name="view_mode">tree,form</field> 
     </record>
@@ -11,13 +11,13 @@
         <form string="prescription_form">
             <sheet name="prescription">
                 <group>
-                <field name="patient_id"/>
+                    <field name="patient_id"/>
                 </group>
                 <group>
-                <field name = "doctor_id"/>
+                    <field name = "doctor_id"/>
                 </group>
                 <group>
-                <field name = "treatment_id"/>
+                    <field name = "treatment_id"/>
                 </group>
                 <group>
                 <field name = "medication_details">
