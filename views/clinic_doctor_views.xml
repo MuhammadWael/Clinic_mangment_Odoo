@@ -29,16 +29,26 @@
         <form>
             <sheet name="Doctor">
                 <group>
-                <field name="name"/>
+                    <field name="name"/>
                 </group>
                 <group>
-                <field name = "email"/>
+                    <field name = "email"/>
                 </group>
                 <group>
-                <field name = "specialty"/>
+                    <field name = "specialty"/>
                 </group>
                 <group>
-                <field name = "availability"/> 
+                    <field name = "availability"/> 
+                </group>
+                <group string="Upcoming Appointments">
+                    <field name="upcoming_appointments">
+                        <tree>
+                            <field name="appointment_id"/>
+                            <field name="patient_id"/>
+                            <field name="appointment"/>
+                            <field name="status"/>
+                        </tree>
+                    </field>
                 </group>
             </sheet>
         </form>

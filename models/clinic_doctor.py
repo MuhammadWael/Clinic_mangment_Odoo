@@ -11,6 +11,11 @@ class ClinicDoctor(models.Model):
             ('available','Available'),
             ('unavailable','Unavailable')
         ]) 
+    upcoming_appointments = fields.One2many(
+    comodel_name="clinic.appointment",
+    compute="_compute_upcoming_appointments",
+    string="Upcoming Appointments"
+    )
 
     @api.depends('appointment_id')
     def _compute_avalability(self):
@@ -23,3 +28,13 @@ class ClinicDoctor(models.Model):
                 record.availability = 'unavailable'
             else:
                 record.availability = 'available'
+        
+    @api.depends('appointment_id')
+    def _compute_upcoming_appointments(self):
+        for record in self:
+            upcoming_appointments = self.env['clinic.appointment'].search([
+                ('doctor_id', '=', record.id),
+                ('appointment', '>=', fields.Datetime.now()),
+                ('status', 'in', ['confirmed', 'pending'])
+            ])
+            record.upcoming_appointments = upcoming_appointments
