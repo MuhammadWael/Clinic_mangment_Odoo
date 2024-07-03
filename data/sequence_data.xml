@@ -2,8 +2,9 @@
     <record id="clinic_appointment_sequence" model="ir.sequence">
         <field name="name">Appointment Sequence</field>
         <field name="code">clinic.appointment.sequence</field>
-        <field name="prefix">A</field> <!--A: Appointment -->
+        <field name="prefix">CA</field> <!--CA: Clinic Appointment -->
         <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
     </record>
     
     <record id="clinic_patient_sequence" model="ir.sequence">

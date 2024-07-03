@@ -60,8 +60,6 @@
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field> 
     </record>
-
-
     
     <record id="view_my_form" model="ir.actions.act_window.view">
         <field name="view_mode">form</field>
