@@ -79,8 +79,11 @@
                             <field name = "notes"/>
                         </div>   
                         <div>
-                            <field name = "total_price"/>
+                            <field name = "duration"/>
                         </div>   
+                        <div>
+                            <field name = "total_price"/>
+                        </div>    
                     </div>
                 </t>
             </templates>
@@ -92,9 +95,11 @@
         <field name="name">Appointment Calendar</field>
         <field name="model">clinic.appointment</field>
         <field name="arch" type="xml">
-            <calendar string="Appointments" date_start="appointment">
+            <calendar string="Appointments" date_start="appointment" 
+            color="status" mode="month" quick_create="False">
                 <field name="appointment_type"/>
                 <field name="appointment_id"/>
+                <field name="doctor_id" filters="1"/>
                 <field name="status"/>
                 <field name="notes"/>
                 <field name="total_price"/>

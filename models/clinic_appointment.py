@@ -24,6 +24,7 @@ class ClinicAppointment(models.Model):
         ('confirmed', 'Confirmed')
     ])
     notes = fields.Text(string="Add notes")
+    duration = fields.Float(string="How Many slots?" ,default=1)
     total_price = fields.Integer(string="Price")
 
     @api.model
