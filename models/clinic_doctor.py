@@ -3,7 +3,7 @@ from odoo import models,fields,api
 class ClinicDoctor(models.Model):
     _inherit = "res.users"
 
-    specialty = fields.Text(string="Specialty", required=True)
+    specialty = fields.Char(string="Specialty", required=True)
     availability = fields.One2many("clinic.availability","doctor_id",string="Availability") 
     appointment_id = fields.One2many("clinic.appointment","doctor_id",string="Appointments")
     upcoming_appointments = fields.One2many(
