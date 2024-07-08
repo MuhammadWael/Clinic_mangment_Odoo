@@ -96,10 +96,12 @@
         <field name="model">clinic.appointment</field>
         <field name="arch" type="xml">
             <calendar string="Appointments" date_start="appointment" 
-            color="status" mode="month" quick_create="False">
+            color="status" mode="month" quick_create="False"
+             event_open_popup="True" ><!-- event_limit="5" to make limited appointments appear in calender's bill-->
                 <field name="appointment_type"/>
                 <field name="appointment_id"/>
-                <field name="doctor_id" filters="1"/>
+                <field name="doctor_id"/>
+                <field name="specialty" filters="1"/>
                 <field name="status"/>
                 <field name="notes"/>
                 <field name="total_price"/>
