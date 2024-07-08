@@ -1,5 +1,6 @@
 from odoo import models,fields,api,Command
 from odoo.exceptions import ValidationError,UserError
+from pytz import timezone
 
 class ClinicAppointment(models.Model):
     _name = "clinic.appointment"
@@ -13,13 +14,14 @@ class ClinicAppointment(models.Model):
     treatment_id = fields.One2many("clinic.treatment","appointment_id")
     appointment = fields.Datetime(string="Appointment Time",required=True)
     appointment_type = fields.Selection(
-        required=True,
         selection=[
         ('consultation','Consultation'),
         ('checkup','Checkup'),
         ('emergency','Emergency')
-    ])
+    ],
+    default ='checkup')
     status = fields.Selection([
+        ('available','Available'),
         ('pending','Pending'),
         ('canceled', 'Canceled'),
         ('confirmed', 'Confirmed')
@@ -30,6 +32,10 @@ class ClinicAppointment(models.Model):
 
     @api.model
     def create(self, vals):
+        if 'appointment' in vals:
+            appointment_datetime = fields.Datetime.context_timestamp(self, fields.Datetime.to_datetime(vals['appointment']))
+            vals['appointment'] = appointment_datetime.astimezone(timezone('UTC')).replace(tzinfo=None)
+  
         if not vals.get('appointment_id'):
             vals['appointment_id'] = self.env['ir.sequence'].next_by_code('clinic.appointment.sequence')
         
