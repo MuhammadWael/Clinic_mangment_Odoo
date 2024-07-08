@@ -37,20 +37,27 @@
                 <group>
                     <field name = "specialty"/>
                 </group>
-                <group>
-                    <field name = "availability"/> 
-                </group>
-                <group string="Upcoming Appointments">
-                    <field name="upcoming_appointments">
-                        <tree>
-                            <field name="appointment_id"/>
-                            <field name="patient_id"/>
-                            <field name="appointment"/>
-                            <field name="treatment_id"/>
-                            <field name="status"/>
+                <group string="Availability"> 
+                    <field name="availability"> 
+                        <tree editable="True">                  
+                            <field name = "week_day"/> 
+                            <field name = "start_time"/> 
+                            <field name = "end_time"/>
                         </tree>
-                    </field>
+                    </field> 
                 </group>
+                    <group string="Upcoming Appointments">
+                        <field name="upcoming_appointments">
+                            <tree>
+                                <field name="appointment_id"/>
+                                <field name="patient_id"/>
+                                <field name="appointment"/>
+                                <field name="treatment_id"/>
+                                <field name="status"/>
+                            </tree>
+                        </field>
+                    </group>
+
             </sheet>
         </form>
     </field>

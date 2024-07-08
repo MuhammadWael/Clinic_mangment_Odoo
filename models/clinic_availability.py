@@ -3,7 +3,7 @@ from odoo import models,fields,api
 class ClinicAvailability(models.Model):
     _name = "clinic.availability"
 
-    doctor_id = fields.One2many("res.users","availability",string="Availability")
+    doctor_id = fields.Many2one("res.users",string="Availability")
     week_day = fields.Selection( string="Day",
         selection=[
             ('sat ','Sat'),
@@ -18,3 +18,4 @@ class ClinicAvailability(models.Model):
     )
     start_time = fields.Float(string="Start Time",widget="float_time",required=True)
     end_time = fields.Float(string="End Time",widget="float_time",required=True)
+

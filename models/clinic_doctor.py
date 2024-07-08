@@ -4,7 +4,7 @@ class ClinicDoctor(models.Model):
     _inherit = "res.users"
 
     specialty = fields.Text(string="Specialty", required=True)
-    availability = fields.Many2one("clinic.availability") 
+    availability = fields.One2many("clinic.availability","doctor_id",string="Availability") 
     appointment_id = fields.One2many("clinic.appointment","doctor_id",string="Appointments")
     upcoming_appointments = fields.One2many(
     comodel_name="clinic.appointment",
