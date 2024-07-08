@@ -32,7 +32,7 @@
                     <field name="name"/>
                 </group>
                 <group>
-                    <field name = "email"/>
+                    <field name = "login"/>
                 </group>
                 <group>
                     <field name = "specialty"/>
