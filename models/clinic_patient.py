@@ -6,7 +6,7 @@ class ClinicPatient(models.Model):
 
     patient_id = fields.Char(string='Patient ID', readonly=True, copy=False, index=True)
     birth_date = fields.Date(string="Date of Birth")
-    emergency_contact = fields.Text(string="Emergency Contact")
+    emergency_contact = fields.Char(string="Emergency Contact")
     insurance_info = fields.Text(string="Isurance Info")
     medical_records = fields.One2many("clinic.medical_record","patient_id",string="Medical Records")
 

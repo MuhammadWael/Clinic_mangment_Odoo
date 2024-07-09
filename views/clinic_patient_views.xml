@@ -13,27 +13,35 @@
                     <group>
                         <group>
                             <field name="name"/>
-                        </group>
-                        <group> 
-                            <field name="medical_records"/>
-                        </group>
-                        <group>
+                        <!-- </group>
+                        <group> -->
                             <field name="birth_date"/>
                             <field name="age" readonly="True"/>
                         </group>
-                        <group>
-                            <field name="emergency_contact"/>
-                        </group>
-                        <group>
-                            <h3>Address</h3>
-                            <field name="street" string="Street"/>
-                            <field name="street2" string="Street2"/>
-                            <field name="city" string="City" />
-                            <field name="state_id" string="State id"/>
-                            <field name="zip" string="zip" />
-                            <field name="country_id" string="Country"/>
-                        </group>
                     </group>
+                    <notebook >
+                        <page string="Contact Information">
+                            <group>
+                                <field name="phone"/>
+                            </group>
+                            <group>
+                                <field name="emergency_contact"/>
+                            </group>
+                            <group string="Address">
+                                <field name="street" string="Street"/>
+                                <field name="street2" string="Street2"/>
+                                <field name="city" string="City"/>
+                                <!-- <field name="state_id" string="State id"/>  -->
+                                <field name="zip" string="Zip Code"/>
+                                <field name="country_id" string="Country"/>
+                            </group>
+                        </page>
+                        <page string="Medical Record">
+                            <group> 
+                                <field name="medical_records"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -62,16 +70,19 @@
         <field name="view_mode">tree,form</field> 
     </record>
     
+    <record id="view_my_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="clinic_patient_tree"/>
+        <field name="act_window_id" ref="clinic_patient_action"/>
+    </record>
+    
     <record id="view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="20"/>
         <field name="view_mode">form</field>
         <field name="view_id" ref="clinic_patient_form"/>
         <field name="act_window_id" ref="clinic_patient_action"/>
     </record>
 
-    <record id="view_my_tree" model="ir.actions.act_window.view">
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="clinic_patient_tree"/>
-        <field name="act_window_id" ref="clinic_patient_action"/>
-    </record>
     
 </odoo>
