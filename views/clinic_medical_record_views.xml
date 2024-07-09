@@ -14,7 +14,7 @@
                     <field name="patient_id"/>
                 </group>
                 <group>
-                    <field name = "treatment_id"/>
+                    <field name = "treatment_id" widget="many2many_tags"/>
                 </group>
                 <group>
                     <field name = "notes"/>

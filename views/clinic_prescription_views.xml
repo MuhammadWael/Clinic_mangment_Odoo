@@ -20,17 +20,21 @@
                     <field name = "treatment_id"/>
                 </group>
                 <group>
-                <field name = "medication_details">
-                    <tree string="Medication Details" editable="bottom">
-                        <field name = "name"/>
-                        <field name = "dosage"/>
-                        <field name = "duration"/>
-                    </tree>
-                </field>   
+                    <field name = "notes"/>
                 </group>
-                <group>
-                <field name = "notes"/>
-                </group>
+                <notebook>
+                    <page string="Medication Details">
+                        <group>
+                            <field name = "medication_details">
+                                <tree string="Medication Details" editable="bottom">
+                                    <field name = "name"/>
+                                    <field name = "dosage"/>
+                                    <field name = "duration"/>
+                                </tree>
+                            </field>   
+                        </group>
+                    </page>
+                </notebook>
             </sheet>
         </form>
     </field>
