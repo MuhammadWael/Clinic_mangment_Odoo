@@ -10,6 +10,11 @@
     <field name="arch" type="xml">
         <form string="prescription_form">
             <sheet name="prescription">
+                <header>
+                    <h1>
+                        <field name="prescription_id" readonly="True"/>
+                    </h1>
+                </header>
                 <group>
                     <field name="patient_id"/>
                 </group>
