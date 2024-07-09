@@ -33,8 +33,9 @@ class ClinicAppointment(models.Model):
     @api.model
     def create(self, vals):
         if 'appointment' in vals:
-            appointment_datetime = fields.Datetime.context_timestamp(self, fields.Datetime.to_datetime(vals['appointment']))
-            vals['appointment'] = appointment_datetime.astimezone(timezone('UTC')).replace(tzinfo=None)
+            cairo_tz = timezone('Africa/Cairo')
+            appointment_datetime = cairo_tz.localize(fields.Datetime.from_string(vals['appointment']), is_dst=None)
+            vals['appointment'] = appointment_datetime.astimezone(timezone('UTC')).strftime('%Y-%m-%d %H:%M:%S')
   
         if not vals.get('appointment_id'):
             vals['appointment_id'] = self.env['ir.sequence'].next_by_code('clinic.appointment.sequence')
