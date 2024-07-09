@@ -23,4 +23,12 @@
         <field name="company_id" eval="False"/>
     </record>
 
+    <record id="clinic_prescription_sequence" model="ir.sequence">
+        <field name="name">Clinic Prescription</field>
+        <field name="code">clinic.prescription</field>
+         <field name="prefix">PRSC</field> <!--PRSC:clinc Prescription -->
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
 </odoo>

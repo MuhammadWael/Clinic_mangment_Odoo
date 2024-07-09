@@ -51,5 +51,5 @@ class ClinicDoctor(models.Model):
                                 'appointment': appointment_datetime,
                                 'status': 'available'
                             })
-                            start_time +=0.25
+                            start_time += 0.25
                     current_date += timedelta(days=1)

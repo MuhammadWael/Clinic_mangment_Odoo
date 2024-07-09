@@ -77,4 +77,4 @@ class ClinicAppointment(models.Model):
         
             self.env['account.move'].create_clinic_invoice(record.patient_id.id, record.id, record.treatment_id.id)
         return True
-
+    
