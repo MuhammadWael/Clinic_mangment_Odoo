@@ -7,7 +7,7 @@ class ClinicAppointment(models.Model):
 
     appointment_id = fields.Char(string='Appointment ID', readonly=True, copy=False, index=True)
     name = fields.Char(string='Name', compute='_compute_name', store=True)
-    patient_id = fields.Many2one("res.partner",string="Patient",required=True)
+    patient_id = fields.Many2one("res.partner",string="Patient")
     doctor_id = fields.Many2one("res.users",string="Doctor",required=True)
     specialty = fields.Char(related='doctor_id.specialty', string='Specialty', store=True)
     log_id = fields.One2many("clinic.log","appointment_id")

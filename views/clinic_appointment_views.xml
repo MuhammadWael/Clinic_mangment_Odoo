@@ -77,10 +77,7 @@
                         </div>
                         <div>
                             <field name = "notes"/>
-                        </div>   
-                        <div>
-                            <field name = "duration"/>
-                        </div>   
+                        </div>     
                         <div>
                             <field name = "total_price"/>
                         </div>    
