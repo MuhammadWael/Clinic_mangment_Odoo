@@ -9,7 +9,8 @@ class ClinicTreatment(models.Model):
     patient_id = fields.Many2one("res.partner",string="Patient")
     doctor_id = fields.Many2one("res.users",string="Doctor")
     appointment_id = fields.Many2one("clinic.appointment",string="Appointment")
-    prescription_id = fields.One2many("clinic.prescription","treatment_id",string="Prescription")
+    #prescription_id May be usefull for tracking the Treatmnet
+    # prescription_id = fields.One2many("clinic.prescription","treatment_id",string="Prescription")
     treatment_details = fields.One2many('clinic.treatment.details', 'treatment_id', string='Treatment Details')
     notes = fields.Text(string="Add notes")
     total_price = fields.Integer(string="Price")
