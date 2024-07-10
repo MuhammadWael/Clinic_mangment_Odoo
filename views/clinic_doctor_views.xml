@@ -3,6 +3,7 @@
         <field name="name">Doctor</field>
         <field name="res_model">res.users</field>
         <field name="view_mode">tree,form</field> 
+        <field name="domain">[('is_doctor', '=', True)]</field> 
     </record>
     <!--inherited form view-->
     <!-- <record id="clinic_doctor_form" model="ir.ui.view">

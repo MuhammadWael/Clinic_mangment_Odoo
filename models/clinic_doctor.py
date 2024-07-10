@@ -19,6 +19,7 @@ class ClinicDoctor(models.Model):
             ('radiologist', 'Radiologist'),
             ('urologist', 'Urologist'),
         ])
+    is_doctor = fields.Boolean(string="is Doctor?", default=False)
     availability = fields.One2many("clinic.availability","doctor_id",string="Availability") 
     appointment_id = fields.One2many("clinic.appointment","doctor_id",string="Appointments")
     upcoming_appointments = fields.One2many(
@@ -27,7 +28,10 @@ class ClinicDoctor(models.Model):
     string="Upcoming Appointments"
     )
 
-    
+    @api.model
+    def create(self,vals):
+        vals['is_doctor'] = True
+        
     @api.depends('appointment_id')
     def _compute_upcoming_appointments(self):
         for record in self:
