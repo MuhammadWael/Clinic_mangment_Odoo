@@ -72,9 +72,17 @@ class ClinicAppointment(models.Model):
     
     def pay_action(self):
         for record in self:
-            if record.status != 'confirmed':
-                record.status = 'confirmed'
-        
-            self.env['account.move'].create_clinic_invoice(record.patient_id.id, record.id, record.treatment_id.id)
+            if record.patient_id:
+                if record.status != 'confirmed':
+                    record.status = 'confirmed'
+                self.env['account.move'].create_clinic_invoice(record.patient_id.id, record.id, record.treatment_id.id)
+        else:
+            raise ValidationError("This appointment has no patient")
         return True
-    
+
+    @api.onchange('patient_id')
+    def _change_status(self):
+        for record in self:
+            if record.patient_id:
+                record.status = 'pending'
+

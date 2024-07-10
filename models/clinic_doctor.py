@@ -31,7 +31,8 @@ class ClinicDoctor(models.Model):
     @api.model
     def create(self,vals):
         vals['is_doctor'] = True
-        
+        return super().create(vals)
+    
     @api.depends('appointment_id')
     def _compute_upcoming_appointments(self):
         for record in self:
