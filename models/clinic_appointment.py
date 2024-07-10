@@ -61,10 +61,13 @@ class ClinicAppointment(models.Model):
     @api.constrains
     def _check_conflict(self):
         for record in self:
+            if not record.patient_id:
+                record.status = 'available'
+
             if record.status != 'canceled':
                 overlapping_appointments = self.search([
                     ('doctor_id', '=', record.doctor_id.id),
-                    ('appontment','=',record.appointment),
+                    ('appointment','=',record.appointment),
                     ('id', '!=', record.id),
                     ('status', '!=','canceled')
                 ])
@@ -96,7 +99,7 @@ class ClinicAppointment(models.Model):
         for record in self:
             if record.patient_id:
                 record.status = 'pending'
-
+            
     def write(self, vals):
         res = super().write(vals)
         if 'status' in vals:

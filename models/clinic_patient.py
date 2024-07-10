@@ -15,7 +15,6 @@ class ClinicPatient(models.Model):
     @api.model
     def create(self,vals):
         vals['patient_id'] = self.env['ir.sequence'].next_by_code('clinic.patient')
-        vals['is_patient'] = True
         return super().create(vals)
     
     @api.depends('birth_date')

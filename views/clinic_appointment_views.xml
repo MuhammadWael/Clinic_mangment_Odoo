@@ -20,10 +20,10 @@
                 </header>
                 <group> 
                     <group>
-                        <field name="patient_id"/>
+                        <field name="patient_id" domain="[('is_patient', '=', True)]"/>
                     </group>
                     <group>
-                        <field name="doctor_id"/>
+                        <field name="doctor_id" readonly="True"/>
                         <field name="specialty" readonly="True"/>
                     </group>
                     <group>

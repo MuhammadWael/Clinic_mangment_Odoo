@@ -4,7 +4,7 @@
         <field name="name">Log</field>
         <field name="model">clinic.log</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree default_order="entry_datetime desc">
                 <field name ="patient_id"/>
                 <field name ="doctor_id"/>
                 <field name ="appointment_id_to_be_shown"/>
