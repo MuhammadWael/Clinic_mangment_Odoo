@@ -4,7 +4,21 @@ from datetime import timedelta,datetime
 class ClinicDoctor(models.Model):
     _inherit = "res.users"
 
-    specialty = fields.Char(string="Specialty", required=True)
+    specialty = fields.Selection(
+        string="Specialty", 
+        required=True,
+        selection=[
+            ('general_practitioner', 'General Practitioner'),
+            ('pediatrician', 'Pediatrician'),
+            ('cardiologist', 'Cardiologist'),
+            ('dermatologist', 'Dermatologist'),
+            ('gynecologist', 'Gynecologist'),
+            ('neurologist', 'Neurologist'),
+            ('orthopedist', 'Orthopedist'),
+            ('psychiatrist', 'Psychiatrist'),
+            ('radiologist', 'Radiologist'),
+            ('urologist', 'Urologist'),
+        ])
     availability = fields.One2many("clinic.availability","doctor_id",string="Availability") 
     appointment_id = fields.One2many("clinic.appointment","doctor_id",string="Appointments")
     upcoming_appointments = fields.One2many(

@@ -22,27 +22,26 @@
                 <group>
                 <field name = "doctor_id"/>
                 </group>
-                <group>
                 <!-- <group>
                  <field name = "prescription_id"/> may be usefull for tracking the treatment 
                 </group> -->
                 <group>
-                <field name = "appointment_id"/>
+                    <field name = "appointment_id"/>
                 </group>
                 <group>
-                <field name = "treatment_details">
-                    <tree>
-                        <field name="diagnoses"/>                        
-                        <field name="prescriped_medication"/>
-                        <field name="proceduers"/>
-                    </tree>
-                </field>   
+                    <field name = "treatment_details">
+                        <tree>
+                            <field name="diagnoses"/>                        
+                            <field name="prescriped_medication"/>
+                            <field name="proceduers"/>
+                        </tree>
+                    </field>   
                 </group>
                 <group>
-                <field name = "notes"/>
+                    <field name = "notes"/>
                 </group>
                 <group>
-                <field name = "total_price"/>
+                    <field name = "total_price"/>
                 </group>
             </sheet>
         </form>
