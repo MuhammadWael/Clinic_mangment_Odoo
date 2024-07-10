@@ -7,10 +7,10 @@
             <tree>
                 <field name ="patient_id"/>
                 <field name ="doctor_id"/>
-                <field name ="appointment_id"/>
+                <field name ="appointment_id_to_be_shown"/>
                 <field name ="entry_datetime"/>
+                <field name ="status"/>
                 <field name ="notes"/>
-
             </tree>
         </field>
     </record> 

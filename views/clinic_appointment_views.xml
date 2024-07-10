@@ -14,8 +14,9 @@
                 <h1>
                     <field name="appointment_id"/>
                 </h1>
-                    <button name="pay_action" type="object" string="Pay"/> 
-                    <field name="status" widget="statusbar"/>
+                    <button name="pay_action" type="object" string="Pay" invisible="status in ['confirmed','canceled']"/> 
+                    <button name="cancel_action" type="object" string="Cancel" invisible="status in ['confirmed','canceled']"/> 
+                    <field name="status" widget="statusbar"/>   
                 </header>
                 <group> 
                     <group>
@@ -32,7 +33,7 @@
                         <field name = "appointment_type"/>
                     </group>
                     <group>
-                        <field name = "status"/>   
+                        <field name = "status" readonly="True"/>   
                     </group>
                     <group>
                         <field name = "notes"/> 

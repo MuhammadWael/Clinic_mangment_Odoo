@@ -46,7 +46,8 @@ class ClinicAppointment(models.Model):
             'appointment_id': appointment.id,
             'create_uid': appointment.create_uid.id,
             'entry_datetime': appointment.appointment,
-            'notes': appointment.notes
+            'notes': appointment.notes,
+            'status': appointment.status
         })
         
         return appointment
@@ -76,13 +77,43 @@ class ClinicAppointment(models.Model):
                 if record.status != 'confirmed':
                     record.status = 'confirmed'
                 self.env['account.move'].create_clinic_invoice(record.patient_id.id, record.id, record.treatment_id.id)
-        else:
-            raise ValidationError("This appointment has no patient")
+            else:
+                raise ValidationError("This appointment has no patient")
+        return True
+    def cancel_action(self):
+        for record in self:
+            if record.patient_id:
+                if record.status == 'confirmed':
+                    raise ValidationError("This appointment already Payed")
+                else:
+                    record.status = 'canceled'
+            else:
+                raise ValidationError("This appointment has no patient")
         return True
 
     @api.onchange('patient_id')
-    def _change_status(self):
+    def _change_status_to_pending(self):
         for record in self:
             if record.patient_id:
                 record.status = 'pending'
+
+    def write(self, vals):
+        res = super().write(vals)
+        if 'status' in vals:
+            self._record_status_change()
+        return res
+    
+    def _record_status_change(self):
+        for record in self:
+            self.env['clinic.log'].create({
+                'patient_id': record.patient_id.id,
+                'appointment_id': record.id,
+                'appointment_id_to_be_shown': record.appointment_id,
+                'entry_datetime': fields.datetime.now(),
+                'status': record.status,
+                'notes': record.notes,
+            })
+            
+
+
 
