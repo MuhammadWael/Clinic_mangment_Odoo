@@ -9,12 +9,13 @@ class ClinicPatient(models.Model):
     emergency_contact = fields.Char(string="Emergency Contact")
     insurance_info = fields.Text(string="Isurance Info")
     medical_records = fields.One2many("clinic.medical_record","patient_id",string="Medical Records")
-
+    is_patient = fields.Boolean(string="is Patient?", default=False)
     age = fields.Integer(string="Age", compute="_compute_age")
     
     @api.model
     def create(self,vals):
         vals['patient_id'] = self.env['ir.sequence'].next_by_code('clinic.patient')
+        vals['is_patient'] = True
         return super().create(vals)
     
     @api.depends('birth_date')

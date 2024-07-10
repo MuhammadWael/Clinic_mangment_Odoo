@@ -67,7 +67,8 @@
     <record id="clinic_patient_action" model="ir.actions.act_window">
         <field name="name">Patient</field>
         <field name="res_model">res.partner</field>
-        <field name="view_mode">tree,form</field> 
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_patient', '=', True)]</field> 
     </record>
     
     <record id="view_my_tree" model="ir.actions.act_window.view">
