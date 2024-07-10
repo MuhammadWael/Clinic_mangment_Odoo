@@ -23,7 +23,7 @@
                         <field name="patient_id" domain="[('is_patient', '=', True)]"/>
                     </group>
                     <group>
-                        <field name="doctor_id" readonly="True"/>
+                        <field name="doctor_id" domain="[('is_patient', '=', True)]" readonly="True"/>
                         <field name="specialty" readonly="True"/>
                     </group>
                     <group>

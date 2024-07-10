@@ -40,16 +40,16 @@ class ClinicAppointment(models.Model):
             vals['appointment_id'] = self.env['ir.sequence'].next_by_code('clinic.appointment.sequence')
         
         appointment = super(ClinicAppointment, self).create(vals)
-        
-        appointment.log_id.create({
-            'patient_id': appointment.patient_id.id,
-            'appointment_id': appointment.id,
-            'create_uid': appointment.create_uid.id,
-            'entry_datetime': appointment.appointment,
-            'notes': appointment.notes,
-            'status': appointment.status
-        })
-        
+        if vals.get('patient_id'):
+            appointment.log_id.create({
+                'patient_id': appointment.patient_id.id,
+                'appointment_id': appointment.id,
+                'create_uid': appointment.create_uid.id,
+                'entry_datetime': appointment.appointment,
+                'notes': appointment.notes,
+                'status': appointment.status
+            })
+            
         return appointment
     
     @api.depends('appointment_id')    
@@ -61,6 +61,7 @@ class ClinicAppointment(models.Model):
     @api.constrains
     def _check_conflict(self):
         for record in self:
+          
             if not record.patient_id:
                 record.status = 'available'
 
