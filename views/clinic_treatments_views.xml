@@ -1,12 +1,12 @@
 <odoo>
     <record id="clinic_treatment_action" model="ir.actions.act_window">
         <field name="name">Treatment</field>
-        <field name="res_model">clinic.treatment</field>
+        <field name="res_model">product.template</field>
         <field name="view_mode">tree,form</field> 
     </record>
     <record id="clinic_treatment_form" model="ir.ui.view">
     <field name="name">Treatment</field>
-    <field name="model">clinic.treatment</field>
+    <field name="model">product.template</field>
     <field name="arch" type="xml">
         <form string="treatment_form">
             <sheet name="treatment">
@@ -15,33 +15,33 @@
                         <field name="treatment_id"/>
                     </h1>
                     <button name="pay_action" type="object" string="Pay"/> 
+                    <field name="treatment_id"/>
                 </header>
                 <group>
-                <field name="patient_id"/>
-                </group>
-                <group>
-                <field name = "doctor_id"/>
-                </group>
-                <!-- <group>
-                 <field name = "prescription_id"/> may be usefull for tracking the treatment 
-                </group> -->
-                <group>
-                    <field name = "appointment_id"/>
-                </group>
-                <group>
-                    <field name = "treatment_details">
-                        <tree>
-                            <field name="diagnoses"/>                        
-                            <field name="prescriped_medication"/>
-                            <field name="proceduers"/>
-                        </tree>
-                    </field>   
-                </group>
-                <group>
-                    <field name = "notes"/>
-                </group>
-                <group>
-                    <field name = "total_price"/>
+                    <group>
+                        <field name = "name"/>
+                    </group>
+                    <group>
+                        <field name ="list_price"/>
+                    </group>
+                    <group>
+                        <field name ="standard_price" />
+                    </group>
+                    <group>
+                        <field name ="taxes_id" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name = "notes"/>
+                    </group>
+                    <group>
+                        <field name = "treatment_details">
+                            <tree>
+                                <field name="diagnoses"/>                        
+                                <field name="prescriped_medication"/>
+                                <field name="proceduers"/>
+                            </tree>
+                        </field>   
+                    </group>
                 </group>
             </sheet>
         </form>
@@ -49,19 +49,28 @@
     </record>
     <record id="clinic_treatment_tree" model="ir.ui.view">
         <field name="name">Treatment</field>
-        <field name="model">clinic.treatment</field>
+        <field name="model">product.template</field>
         <field name="arch" type="xml">
             <tree string="treatment_tree">
-                <field name="treatment_id"/>
-                <field name="patient_id"/>
-                <field name = "doctor_id"/>
-                <field name = "appointment_id"/>
-                <!-- <field name = "prescription_id"/> --><!--may be usefull for tracking the treatment -->
-                <field name = "treatment_details"/>   
-                <field name = "notes"/>   
-                <field name = "total_price"/>   
+                <field name= "name"/>
+                <field name= "treatment_id"/>
+                <field name= "list_price"/>
+                <field name = "treatment_details"/>
+                <field name = "notes"/>
             </tree>
         </field>
     </record> 
-
+    <record id="view_my_treatment_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="20"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="clinic_treatment_form"/>
+        <field name="act_window_id" ref="clinic_treatment_action"/>
+    </record>
+    
+    <record id="view_my_treatment_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="10"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="clinic_treatment_tree"/>
+        <field name="act_window_id" ref="clinic_treatment_action"/>
+    </record>
 </odoo>

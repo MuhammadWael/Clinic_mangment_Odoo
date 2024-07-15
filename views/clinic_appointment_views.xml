@@ -41,13 +41,18 @@
                     <group>
                         <field name = "total_price"/> 
                     </group>
-                <notebook>
-                    <page string="Treatment">  
-                        <group>
-                            <field name="treatment_id"/>
-                        </group>
-                    </page>
-                </notebook>
+                    <notebook>
+                        <page string="Treatment">  
+                            <group>
+                                <field name="treatment_id" widget="many2many"/>
+                            </group>
+                        </page>
+                        <page string="Prescription">  
+                            <group>
+                                <field name="prescription_id" />
+                            </group>
+                        </page>
+                    </notebook>
                 </group>
             </form>
         </field>

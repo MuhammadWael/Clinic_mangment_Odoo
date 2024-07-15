@@ -5,7 +5,9 @@ class ClinicMedicalRecord(models.Model):
     _name = "clinic.medical_record"
 
     patient_id = fields.Many2one("res.partner",string="Patient")
-    treatment_id = fields.Many2many("clinic.treatment")
+    treatment_id = fields.Many2many("product.template")
+    appointment_id = fields.Many2one("clinic.appointment")    
+    entry_datetime = fields.Datetime(string="Date&Time")
     notes = fields.Text(string="Add notes")
 
     upload_file = fields.Binary(string="Upload File", attachment=True)

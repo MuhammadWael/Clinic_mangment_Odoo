@@ -14,6 +14,12 @@
                     <field name="patient_id"/>
                 </group>
                 <group>
+                    <field name = "appointment_id"/>
+                </group>
+                <group>
+                    <field name = "entry_datetime"/>
+                </group>
+                <group>
                     <field name = "treatment_id" widget="many2many_tags"/>
                 </group>
                 <group>
@@ -35,10 +41,11 @@
         <field name="arch" type="xml">
             <tree string="medical_record_tree">
                 <field name="patient_id"/>
-                <field name = "treatment_id"/>
-                <field name = "notes"/>
+                <field name = "appointment_id"/>
+                <field name = "entry_datetime"/>
                 <field name = "upload_file_name"/>
                 <field name = "upload_file"/>
+                <field name = "notes"/>
             </tree>
         </field>
     </record> 

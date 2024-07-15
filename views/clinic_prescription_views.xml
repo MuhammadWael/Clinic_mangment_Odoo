@@ -16,14 +16,14 @@
                     </h1>
                 </header>
                 <group>
+                    <field name = "appointment_id"/>
+                </group>                
+                <group>
                     <field name="patient_id"/>
                 </group>
                 <group>
                     <field name = "doctor_id"/>
-                </group>
-                <group>
-                    <field name = "treatment_id"/>
-                </group>
+                </group>                
                 <group>
                     <field name = "notes"/>
                 </group>
@@ -32,7 +32,7 @@
                         <group>
                             <field name = "medication_details">
                                 <tree string="Medication Details" editable="bottom">
-                                    <field name = "name"/>
+                                    <field name = "treatment_id"/>
                                     <field name = "dosage"/>
                                     <field name = "duration"/>
                                 </tree>
@@ -49,9 +49,9 @@
         <field name="model">clinic.prescription</field>
         <field name="arch" type="xml">
             <tree string="prescription_tree">
-                <field name="patient_id"/>
+                <field name="prescription_id"/>
                 <field name = "doctor_id"/>
-                <field name = "treatment_id"/>
+                <field name = "patient_id"/>
                 <field name = "medication_details"/>
                 <field name = "notes"/>   
             </tree>

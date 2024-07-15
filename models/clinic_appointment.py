@@ -11,7 +11,9 @@ class ClinicAppointment(models.Model):
     doctor_id = fields.Many2one("res.users",string="Doctor",required=True)
     specialty = fields.Selection(related='doctor_id.specialty', string='Specialty', store=True)
     log_id = fields.One2many("clinic.log","appointment_id")
-    treatment_id = fields.One2many("clinic.treatment","appointment_id")
+    treatment_id = fields.Many2many("product.template","appointment_id")
+    prescription_id = fields.One2many("clinic.prescription","appointment_id",string="Prescription")
+    medical_record_id = fields.One2many("clinic.medical_record","appointment_id")
     appointment = fields.Datetime(string="Appointment Time",required=True)
     appointment_type = fields.Selection(
         selection=[
@@ -49,7 +51,6 @@ class ClinicAppointment(models.Model):
                 'notes': appointment.notes,
                 'status': appointment.status
             })
-            
         return appointment
     
     @api.depends('appointment_id')    
@@ -116,6 +117,13 @@ class ClinicAppointment(models.Model):
                 'entry_datetime': fields.datetime.now(),
                 'status': record.status,
                 'notes': record.notes,
+            })
+            self.env['clinic.medical_record'].create({
+                'patient_id': record.patient_id.id,
+                'appointment_id': record.id,
+                'treatment_id': record.treatment_id.id,
+                'entry_datetime': fields.datetime.now(),
+                'notes': record.notes
             })
             
 

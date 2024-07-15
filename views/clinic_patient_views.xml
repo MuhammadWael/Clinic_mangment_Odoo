@@ -38,7 +38,7 @@
                         </page>
                         <page string="Medical Record">
                             <group> 
-                                <field name="medical_records"/>
+                                <field name="medical_record_id"/>
                             </group>
                         </page>
                     </notebook>
@@ -55,7 +55,7 @@
                 <field name = "patient_id"/>
                 <field name = "name"/>
                 <field name = "birth_date"/> 
-                <field name= "medical_records"/>
+                <field name= "medical_record_id"/>
                 <field name = "emergency_contact"/> 
                 <field name = "insurance_info"/> 
                 <field name = "age"/> 
