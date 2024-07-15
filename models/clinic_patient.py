@@ -1,4 +1,5 @@
 from odoo import models,fields,api
+from odoo.exceptions import ValidationError,UserError
 from datetime import date
 
 class ClinicPatient(models.Model):
@@ -22,8 +23,11 @@ class ClinicPatient(models.Model):
         for record in self:
             if record.birth_date:
                 today = date.today()
-                birth_date = fields.Date.from_string(record.birth_date)
-                record.age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+                if record.birth_date > today:
+                    raise UserError("Birth Day Can't be in the Future") 
+                else:
+                    birth_date = fields.Date.from_string(record.birth_date)
+                    record.age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
             else:
                 record.age = 0
 
