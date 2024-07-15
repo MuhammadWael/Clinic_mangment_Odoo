@@ -81,7 +81,10 @@ class ClinicAppointment(models.Model):
             if record.patient_id:
                 if record.status != 'confirmed':
                     record.status = 'confirmed'
-                self.env['account.move'].create_clinic_invoice(record.patient_id.id, record.id, record.treatment_id.id)
+                self.env['account.move'].create_clinic_invoice(
+                      record.patient_id.id,
+                      record.id, 
+                      record.treatment_id.id)
             else:
                 raise ValidationError("This appointment has no patient")
         return True
@@ -121,7 +124,7 @@ class ClinicAppointment(models.Model):
             self.env['clinic.medical_record'].create({
                 'patient_id': record.patient_id.id,
                 'appointment_id': record.id,
-                'treatment_id': record.treatment_id.id,
+                'treatment_id': record.treatment_id,
                 'entry_datetime': fields.datetime.now(),
                 'notes': record.notes
             })

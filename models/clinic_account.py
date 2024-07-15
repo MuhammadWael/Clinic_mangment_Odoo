@@ -11,11 +11,11 @@ class ClinicAccount(models.Model):
     @api.model
     def create_clinic_invoice(self, patient_id, appointment_id, treatment_id):
         if treatment_id:
-            treatment = self.env['clinic.treatment'].browse(treatment_id)
+            treatment = self.env['product.template'].browse(treatment_id)
             invoice_line = {
                 'name': treatment.name,
                 'quantity': 1,
-                'price_unit': treatment.total_price,
+                'price_unit': treatment.list_price,
             }
         if appointment_id:
             appointment = self.env['clinic.appointment'].browse(appointment_id)
