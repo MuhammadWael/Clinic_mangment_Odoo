@@ -29,7 +29,7 @@ class ClinicAppointment(models.Model):
         ('confirmed', 'Confirmed')
     ])
     notes = fields.Text(string="Add notes")
-    total_price = fields.Integer(string="Price")
+    total_price = fields.Integer(string="Appointment Price",default=100)
 
     @api.model
     def create(self, vals):
@@ -84,7 +84,7 @@ class ClinicAppointment(models.Model):
                 self.env['account.move'].create_clinic_invoice(
                       record.patient_id.id,
                       record.id, 
-                      record.treatment_id.id)
+                      )
             else:
                 raise ValidationError("This appointment has no patient")
         return True
