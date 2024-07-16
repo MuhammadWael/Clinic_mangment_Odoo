@@ -23,7 +23,7 @@
                         <field name="patient_id" domain="[('is_patient', '=', True)]"/>
                     </group>
                     <group>
-                        <field name="doctor_id" domain="[('is_patient', '=', True)]" readonly="True"/>
+                        <field name="doctor_id" domain="[('is_doctor', '=', True)]" readonly="True"/>
                         <field name="specialty" readonly="True"/>
                     </group>
                     <group>
@@ -44,7 +44,7 @@
                     <notebook>
                         <page string="Treatment">  
                             <group>
-                                <field name="treatment_id" widget="many2many"/>
+                                <field name="treatment_id" widget="many2many" domain="[('is_treatment', '=', True)]"/>
                             </group>
                         </page>
                         <page string="Prescription">  

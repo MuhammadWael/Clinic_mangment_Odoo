@@ -7,7 +7,7 @@ class ClinicTreatment(models.Model):
     treatment_id = fields.Char(string='Treatment ID', readonly=True, copy=False, index=True)
     notes = fields.Text(string="Add notes")
     treatment_details = fields.One2many('clinic.treatment.details', 'treatment_id', string='Treatment Details')
-    is_treatment = fields.Boolean(string="is Patient?", default=False)
+    is_treatment = fields.Boolean(string="is Treatment?", default=False)
     #appointment_id = fields.Many2one("clinic.appointment",string="Appointment")
     # # Fields May be usefull for tracking the Treatmnet
     # patient_id = fields.Many2one("res.partner",string="Patient")
