@@ -1,6 +1,6 @@
 from odoo import models,fields,api,Command
 from odoo.exceptions import ValidationError,UserError
-from pytz import timezone
+from pytz import timezone,UTC
 from datetime import timedelta, datetime
 
 class ClinicAppointment(models.Model):
@@ -36,9 +36,8 @@ class ClinicAppointment(models.Model):
     @api.model
     def create(self, vals):
         if 'appointment' in vals:
-            cairo_tz = timezone('Africa/Cairo')
-            appointment_datetime = cairo_tz.localize(fields.Datetime.from_string(vals['appointment']), is_dst=None)
-            vals['appointment'] = appointment_datetime.astimezone(timezone('UTC')).strftime('%Y-%m-%d %H:%M:%S')
+            appointment_datetime = fields.Datetime.from_string(vals['appointment'])
+            vals['appointment'] = self._convert_to_utc(appointment_datetime).strftime('%Y-%m-%d %H:%M:%S')
 
         if not vals.get('appointment_id'):
             vals['appointment_id'] = self.env['ir.sequence'].next_by_code('clinic.appointment.sequence')
@@ -98,16 +97,10 @@ class ClinicAppointment(models.Model):
                 else:
                     record.status = 'canceled'
       
-                    cairo_tz = timezone('Africa/Cairo')
-                    utc_tz = timezone('UTC')
-                    
                     appointment_datetime_utc = fields.Datetime.from_string(record.appointment)
-                    appointment_datetime_cairo = utc_tz.localize(appointment_datetime_utc).astimezone(cairo_tz)
-
-                    # Create a new appointment time by adding 3 hours to the Cairo time
-                    new_appointment_datetime_cairo = appointment_datetime_cairo + timedelta(hours=3)
-                    new_appointment_datetime_utc = new_appointment_datetime_cairo.astimezone(utc_tz).strftime('%Y-%m-%d %H:%M:%S')
-
+                    new_appointment_datetime_utc = self._convert_to_utc(
+                        self._convert_from_utc(appointment_datetime_utc) + timedelta(hours=3)
+                    ).strftime('%Y-%m-%d %H:%M:%S')
 
                     self.env['clinic.appointment'].create({
                         'doctor_id': record.doctor_id.id,
@@ -148,5 +141,18 @@ class ClinicAppointment(models.Model):
                 'entry_datetime': fields.datetime.now(),
                 'notes': record.notes
             })
+    def _get_timezone(self):
+        return timezone('Africa/Cairo')
 
+    def _convert_to_utc(self, dt):
+        tz = self._get_timezone()
+        if dt.tzinfo is None:
+            # Naive datetime, localize it
+            local_dt = tz.localize(dt, is_dst=None)
+        else:
+            # Aware datetime, convert directly
+            local_dt = dt
+        return local_dt.astimezone(UTC)
 
+    def _convert_from_utc(self, dt):
+        return UTC.localize(dt).astimezone(self._get_timezone())
