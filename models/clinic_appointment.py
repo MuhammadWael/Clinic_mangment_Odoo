@@ -14,6 +14,7 @@ class ClinicAppointment(models.Model):
     treatment_id = fields.Many2many("product.template","appointment_id")
     prescription_id = fields.One2many("clinic.prescription","appointment_id",string="Prescription")
     medical_record_id = fields.One2many("clinic.medical_record","appointment_id")
+    doctor_availability = fields.Many2one('clinic.availability',string="Doctor Availability")
     appointment = fields.Datetime(string="Appointment Time",required=True)
     appointment_type = fields.Selection(
         selection=[

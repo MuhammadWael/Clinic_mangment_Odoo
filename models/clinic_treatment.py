@@ -16,7 +16,7 @@ class ClinicTreatment(models.Model):
 
     @api.model
     def create(self,vals):
-        vals['treatment_id'] = self.env['ir.sequence'].next_by_code('clinic.treatment')
+        vals['treatment_id'] = self.env['ir.sequence'].next_by_code('product.template')
         return super().create(vals)
     
     # @api.onchange('appointment_id')
@@ -50,4 +50,4 @@ class ClinicTreatmentDetails(models.Model):
     diagnoses = fields.Char(string='Diagnoses')
     prescriped_medication = fields.Char(string='Prescriped Medication')
     proceduers = fields.Char(string='proceduers')
-    treatment_id = fields.Many2one('clinic.treatment', string='Treatment', required=True)
+    treatment_id = fields.Many2one('product.template', string='Treatment', required=True)
