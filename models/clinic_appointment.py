@@ -17,9 +17,6 @@ class ClinicAppointment(models.Model):
     medical_record_id = fields.One2many("clinic.medical_record","appointment_id")
     doctor_availability = fields.Many2one('clinic.availability',string="Doctor Availability")
     appointment = fields.Datetime(string="Appointment Time",required=True)
-    start_time = fields.Datetime(string="Start Time")
-    end_time = fields.Datetime(string="End Time")
-    duration = fields.Float(string="Duaration(Minutes)",compute = "_compute_duration", store=True)
     appointment_type = fields.Selection(
         selection=[
         ('consultation','Consultation'),
@@ -151,11 +148,5 @@ class ClinicAppointment(models.Model):
                 'entry_datetime': fields.datetime.now(),
                 'notes': record.notes
             })
-    @api.depends('start_time', 'end_time')        
-    def _compute_duration(self):
-        for record in self:
-            if record.start_time and record.end_time:
-                record.duration = (record.end_time - record.start_time).total_seconds() / 3600.0
-
 
 
