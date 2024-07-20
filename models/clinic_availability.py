@@ -45,7 +45,7 @@ class ClinicAvailability(models.Model):
                         'doctor_id': self.doctor_id.id,
                         'appointment': appointment_datetime,
                         'doctor_availability': self.id,
-                        'status': 'available'
+                        'status': 'available',
                     })
                     start_time += 0.25
             current_date += timedelta(days=1)

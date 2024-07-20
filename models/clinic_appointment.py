@@ -1,6 +1,7 @@
 from odoo import models,fields,api,Command
 from odoo.exceptions import ValidationError,UserError
 from pytz import timezone
+from datetime import timedelta, datetime
 
 class ClinicAppointment(models.Model):
     _name = "clinic.appointment"
@@ -16,6 +17,9 @@ class ClinicAppointment(models.Model):
     medical_record_id = fields.One2many("clinic.medical_record","appointment_id")
     doctor_availability = fields.Many2one('clinic.availability',string="Doctor Availability")
     appointment = fields.Datetime(string="Appointment Time",required=True)
+    start_time = fields.Datetime(string="Start Time")
+    end_time = fields.Datetime(string="End Time")
+    duration = fields.Float(string="Duaration(Minutes)",compute = "_compute_duration", store=True)
     appointment_type = fields.Selection(
         selection=[
         ('consultation','Consultation'),
@@ -38,7 +42,7 @@ class ClinicAppointment(models.Model):
             cairo_tz = timezone('Africa/Cairo')
             appointment_datetime = cairo_tz.localize(fields.Datetime.from_string(vals['appointment']), is_dst=None)
             vals['appointment'] = appointment_datetime.astimezone(timezone('UTC')).strftime('%Y-%m-%d %H:%M:%S')
-  
+
         if not vals.get('appointment_id'):
             vals['appointment_id'] = self.env['ir.sequence'].next_by_code('clinic.appointment.sequence')
         
@@ -96,6 +100,24 @@ class ClinicAppointment(models.Model):
                     raise ValidationError("This appointment already Payed")
                 else:
                     record.status = 'canceled'
+      
+                    cairo_tz = timezone('Africa/Cairo')
+                    utc_tz = timezone('UTC')
+                    
+                    appointment_datetime_utc = fields.Datetime.from_string(record.appointment)
+                    appointment_datetime_cairo = utc_tz.localize(appointment_datetime_utc).astimezone(cairo_tz)
+
+                    # Create a new appointment time by adding 3 hours to the Cairo time
+                    new_appointment_datetime_cairo = appointment_datetime_cairo + timedelta(hours=3)
+                    new_appointment_datetime_utc = new_appointment_datetime_cairo.astimezone(utc_tz).strftime('%Y-%m-%d %H:%M:%S')
+
+
+                    self.env['clinic.appointment'].create({
+                        'doctor_id': record.doctor_id.id,
+                        'appointment': new_appointment_datetime_utc,
+                        'doctor_availability': record.doctor_availability.id,
+                        'status': 'available'
+                    })
             else:
                 raise ValidationError("This appointment has no patient")
         return True
@@ -129,7 +151,11 @@ class ClinicAppointment(models.Model):
                 'entry_datetime': fields.datetime.now(),
                 'notes': record.notes
             })
-            
+    @api.depends('start_time', 'end_time')        
+    def _compute_duration(self):
+        for record in self:
+            if record.start_time and record.end_time:
+                record.duration = (record.end_time - record.start_time).total_seconds() / 3600.0
 
 
 
