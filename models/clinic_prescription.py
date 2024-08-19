@@ -11,16 +11,17 @@ class ClinicPrescription(models.Model):
     treatment_id = fields.Many2many("product.template",string="Treatment")
     medication_details = fields.One2many('clinic.medication.detail', 'prescription_id', string='Medication Details')
     notes = fields.Text(string="Add notes")
-    
+    medical_record_id = fields.Many2one("clinic.medical_record","prescription_id") 
     @api.model
     def create(self,vals):
         vals['prescription_id'] = self.env['ir.sequence'].next_by_code('clinic.prescription')
         return super().create(vals)
+
 class MedicationDetail(models.Model):
     _name = 'clinic.medication.detail'
 
+    treatment_id = fields.Many2one('product.template') 
+    name = fields.Char(string='Medication Name',related="treatment_id.name",required=True)
     dosage = fields.Char(string='Dosage', required=True)
     duration = fields.Char(string='Duration', required=True)
     prescription_id = fields.Many2one('clinic.prescription', string='Prescription', required=True)
-    treatment_id = fields.Many2one('product.template') 
-    name = fields.Char(string='Medication Name',related="treatment_id.name",required=True,readonly="False")

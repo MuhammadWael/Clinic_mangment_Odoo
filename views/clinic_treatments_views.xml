@@ -16,7 +16,6 @@
                     <h1>
                         <field name="treatment_id"/>
                     </h1>
-                    <button name="pay_action" type="object" string="Pay"/> 
                     <field name="treatment_id"/>
                 </header>
                 <group>

@@ -12,25 +12,23 @@
             <sheet name="medical_record">
                 <group>
                     <field name="patient_id"/>
-                </group>
-                <group>
-                    <field name = "appointment_id"/>
-                </group>
-                <group>
-                    <field name = "entry_datetime"/>
-                </group>
-                <group>
-                    <field name = "treatment_id" widget="many2many_tags"/>
-                </group>
-                <group>
-                    <field name = "notes"/>
-                </group>
-                <group>
+                    <field name = "appointment_id_to_be_shown"/>                  
+                    <field name = "entry_datetime"/>                  
                     <field name = "upload_file"/> 
-                </group>
-                <group>
                     <field name = "upload_file_name"/>  
                 </group>
+                <notebook>
+                    <page string="Treatments">
+                        <group>
+                            <field name = "treatment_id"/>                                  
+                        </group>
+                    </page>
+                    <page string="Prescription">
+                        <group>
+                            <field name = "prescription_id"/>                                      
+                        </group>
+                    </page>
+                </notebook>
             </sheet>
         </form>
     </field>
@@ -39,12 +37,11 @@
         <field name="name">Medical Record</field>
         <field name="model">clinic.medical_record</field>
         <field name="arch" type="xml">
-            <tree string="medical_record_tree">
-                <field name="patient_id"/>
-                <field name = "appointment_id"/>
+            <tree string="medical_record_tree" default_order="entry_datetime desc">
+                <field name ="appointment_id_to_be_shown"/>
+                <field name ="prescription_id"/>
+                <field name ="treatment_id"/>
                 <field name = "entry_datetime"/>
-                <field name = "upload_file_name"/>
-                <field name = "upload_file"/>
                 <field name = "notes"/>
             </tree>
         </field>

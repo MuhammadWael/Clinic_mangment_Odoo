@@ -45,4 +45,4 @@ class ClinicDoctor(models.Model):
                 ('status', 'in', ['confirmed', 'pending'])
             ])
             record.upcoming_appointments = upcoming_appointments
-            
+

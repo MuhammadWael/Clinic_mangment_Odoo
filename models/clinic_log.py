@@ -16,4 +16,4 @@ class ClinicLog(models.Model):
         ('canceled', 'Canceled'),
         ('confirmed', 'Confirmed')
     ],
-    required="True")
+    required=True)

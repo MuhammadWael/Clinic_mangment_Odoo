@@ -23,13 +23,20 @@
                         <field name="patient_id" domain="[('is_patient', '=', True)]"/>
                     </group>
                     <group>
-                        <field name="doctor_id" domain="[('is_doctor', '=', True)]" readonly="True"/>
+                        <field name="doctor_id" domain="[('is_doctor', '=', True)]"/>
                         <field name="specialty" readonly="True"/>
                     </group>
                     <group>
-                        <field name="appointment"/>
+                        <field name="doctor_availability" readonly="True">
+                            <tree>
+                                <field name="week_day"/>
+                                <field name="start_time"/>
+                                <field name="end_time"/>
+                            </tree>
+                        </field>
                     </group>
                     <group>
+                        <field name="appointment"/>
                         <field name = "appointment_type"/>
                     </group>
                     <group>
@@ -104,7 +111,7 @@
         <field name="model">clinic.appointment</field>
         <field name="arch" type="xml">
             <calendar string="Appointments" date_start="appointment" 
-            color="status" mode="month" quick_create="False"
+            color="status" mode="week" quick_create="False"
              event_open_popup="True" ><!-- event_limit="5" to make limited appointments appear in calender's bill-->
                 <field name="appointment_type"/>
                 <field name="appointment_id"/>

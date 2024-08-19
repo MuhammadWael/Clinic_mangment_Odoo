@@ -17,7 +17,7 @@
 
     <record id="clinic_treatment_sequence" model="ir.sequence">
         <field name="name">Clinic Treatment</field>
-        <field name="code">clinic.treatment</field>
+        <field name="code">product.template.sequence</field>
          <field name="prefix">CT</field> <!--CT:clinc Treatment -->
         <field name="padding">4</field>
         <field name="company_id" eval="False"/>
